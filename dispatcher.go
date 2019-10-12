@@ -6,10 +6,14 @@ import (
 	"github.com/xdevices/dispatcher/caches/sensors"
 	"github.com/xdevices/dispatcher/config"
 	"github.com/xdevices/dispatcher/handlers"
+	"github.com/xdevices/dispatcher/observers"
 	"github.com/xdevices/dispatcher/publishers"
 )
 
 func main() {
+
+	go observers.ObserveSensorChanges()
+
 	e := echo.New()
 	e.GET("/ping", handlers.PingHandler)
 	e.POST("/temperature/:uuid/:value", handlers.TemperatureHandler)
