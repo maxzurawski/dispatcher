@@ -14,6 +14,7 @@ import (
 func main() {
 
 	go observers.ObserveSensorChanges()
+	go observers.ObserveSensorTypesChanges()
 
 	e := echo.New()
 	e.GET("/ping", handlers.PingHandler)
