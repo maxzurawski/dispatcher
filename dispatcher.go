@@ -4,6 +4,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/labstack/echo"
 	"github.com/xdevices/dispatcher/caches/sensors"
+	"github.com/xdevices/dispatcher/caches/sensortypes"
 	"github.com/xdevices/dispatcher/config"
 	"github.com/xdevices/dispatcher/handlers"
 	"github.com/xdevices/dispatcher/observers"
@@ -27,4 +28,5 @@ func init() {
 
 	publishers.InitLogger()
 	_ = sensors.Init(uuid.New().String())
+	_ = sensortypes.Init(uuid.New().String())
 }
