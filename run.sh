@@ -20,12 +20,12 @@ while ! `nc -z rabbit 15672 `; do sleep 3; done
 echo "**************************************************************"
 echo "Waiting for the register service to start "
 echo "**************************************************************"
-while ! `nc -z register 8102 `; do sleep 3; done
+while ! `nc -z proxy:8000/api/register/ `; do sleep 3; done
 
 echo "**************************************************************"
 echo "Waiting for the sensortypes service to start "
 echo "**************************************************************"
-while ! `nc -z sensortypes 8101 `; do sleep 3; done
+while ! `nc -z proxy:8000/api/sensortypes/ `; do sleep 3; done
 
 echo "#############################################"
 echo "Ready to rumble. Starting dispatcher service"
