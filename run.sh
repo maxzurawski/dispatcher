@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 echo "#############################################"
 echo "Waiting for eureka"
@@ -19,12 +19,12 @@ while ! `nc -z rabbit 15672 `; do sleep 3; done
 echo "**************************************************************"
 echo "Waiting for the register service to start "
 echo "**************************************************************"
-while ! `[[ $(curl -s -o /dev/null -w ''%{http_code}'' proxy:8000/api/register/cachesensors/) == "200" ]]`; do sleep 3;done
+while `[ "$(curl -s -o /dev/null -w ''%{http_code}'' proxy:8000/api/register/cachesensors/)" != "200" ]`; do sleep 3;done
 
 echo "**************************************************************"
 echo "Waiting for the sensortypes service to start "
 echo "**************************************************************"
-while ! `[[ "$(curl -s -o /dev/null -w ''%{http_code}'' proxy:8000/api/sensortypes/cachetypes/)" == "200" ]]`; do sleep 3;done
+while `[ "$(curl -s -o /dev/null -w ''%{http_code}'' proxy:8000/api/sensortypes/cachetypes/)" != "200" ]`; do sleep 3;done
 
 echo "#############################################"
 echo "Ready to rumble. Starting dispatcher service"
