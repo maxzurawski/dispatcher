@@ -6,6 +6,10 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/xdevices/dispatcher/config"
+
+	"github.com/xdevices/dispatcher/caches/sensortypes"
+
 	"github.com/xdevices/dispatcher/caches/sensors"
 
 	"github.com/google/uuid"
@@ -32,7 +36,7 @@ func TemperatureHandler(c echo.Context) error {
 	registeredSensor := sensors.Cache.GetByUuid(rawUuid)
 	if registeredSensor == nil {
 		msgString := fmt.Sprintf("sensor with uuid: [%s] is not registered", rawUuid)
-		publishers.Logger().Warn(uuid.New().String(), rawUuid, msgString)
+		publishers.Logger().Error(uuid.New().String(), rawUuid, msgString, "")
 		// otherwise return status bad request
 		return c.JSON(http.StatusBadRequest, errors.New(msgString))
 	}
@@ -47,7 +51,14 @@ func TemperatureHandler(c echo.Context) error {
 		value = tempValue
 	}
 
-	successMsg := fmt.Sprintf("measurement received from sensor with uuid: [%s]. temperature was: [%.2f]", rawUuid, value)
-	publishers.Logger().Info(uuid.New().String(), rawUuid, successMsg)
+	routingKeyToPublish := sensortypes.TypesCache.GetByType(registeredSensor.Type)
+	if routingKeyToPublish == nil {
+		msg := fmt.Sprintf("no topic defined for the measurement")
+		publishers.Logger().Error(uuid.New().String(), rawUuid, msg, "")
+		return c.JSON(http.StatusBadRequest, errors.New(msg))
+	}
+
+	publishers.Logger().PublishTemperatureMeasurement(*routingKeyToPublish, config.DispatcherConfig().ServiceName(),
+		rawUuid, value)
 	return c.NoContent(http.StatusAccepted)
 }
