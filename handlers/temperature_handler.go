@@ -26,6 +26,11 @@ func TemperatureHandler(c echo.Context) error {
 
 	isUuidValid := stringutils.IsUuidValid(rawUuid)
 
+	// NOTE: reinitializing connection to rabbit mq
+	if publishers.Logger().Conn.IsClosed() {
+		config.DispatcherConfig().RabbitMQManager.InitConnection(config.DispatcherConfig().RabbitURL())
+	}
+
 	if !isUuidValid {
 		msgString := fmt.Sprintf("given uuid: [%s] is not valid uuid", rawUuid)
 		publishers.Logger().Warn(uuid.New().String(), rawUuid, msgString)
