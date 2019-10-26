@@ -1,6 +1,6 @@
 package config
 
-import "github.com/xdevices/utilities/discovery"
+import "github.com/maxzurawski/utilities/discovery"
 
 type DispatcherEurekaManager struct {
 	discovery.Manager
