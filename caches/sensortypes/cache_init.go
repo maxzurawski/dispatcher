@@ -6,9 +6,9 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/maxzurawski/dispatcher/publishers"
+	"github.com/xdevices/dispatcher/publishers"
 
-	"github.com/maxzurawski/dispatcher/config"
+	"github.com/xdevices/dispatcher/config"
 )
 
 func Init(processId string) error {

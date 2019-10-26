@@ -1,6 +1,6 @@
 package sensortypes
 
-import "github.com/maxzurawski/utilities/stringutils"
+import "github.com/xdevices/utilities/stringutils"
 
 func (c cache) GetByType(sensorType string) *string {
 	lock.Lock()

@@ -4,16 +4,16 @@ import (
 	"encoding/json"
 	"fmt"
 
-	sensors2 "github.com/maxzurawski/dispatcher/caches/sensors"
+	sensors2 "github.com/xdevices/dispatcher/caches/sensors"
 
-	"github.com/maxzurawski/dispatcher/publishers"
+	"github.com/xdevices/dispatcher/publishers"
 
-	"github.com/maxzurawski/dispatcher/config"
+	"github.com/xdevices/dispatcher/config"
 
 	"github.com/google/uuid"
 	"github.com/labstack/gommon/log"
-	"github.com/maxzurawski/utilities/rabbit/crosscutting"
-	"github.com/maxzurawski/utilities/rabbit/domain"
+	"github.com/xdevices/utilities/rabbit/crosscutting"
+	"github.com/xdevices/utilities/rabbit/domain"
 )
 
 func ObserveSensorChanges() {

@@ -4,8 +4,8 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo"
-	"github.com/maxzurawski/dispatcher/config"
-	"github.com/maxzurawski/utilities/net"
+	"github.com/xdevices/dispatcher/config"
+	"github.com/xdevices/utilities/net"
 )
 
 type IpResponse struct {
