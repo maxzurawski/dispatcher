@@ -1,6 +1,6 @@
 # dispatcher
 
-"Input" service. With dispatcher measurements from external sensors are coming into the system. It's also first line of defense, in that meaning, that it checks, if incoming measurements, messages are valid, and if they are coming in from the registered sensors. 
+"Input service". With dispatcher measurements from external sensors are coming into the system. It's also first line of defense, in that meaning, that it checks, if incoming measurements, messages are valid, and if they are coming in from the registered sensors. 
 
 ---
 
