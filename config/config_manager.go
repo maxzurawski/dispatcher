@@ -3,8 +3,8 @@ package config
 import (
 	"os"
 
-	"github.com/xdevices/utilities/config"
-	"github.com/xdevices/utilities/rabbit"
+	"github.com/maxzurawski/utilities/config"
+	"github.com/maxzurawski/utilities/rabbit"
 )
 
 type dispatcherConfigManager struct {
