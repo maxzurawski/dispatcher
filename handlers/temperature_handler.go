@@ -6,17 +6,17 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/xdevices/dispatcher/config"
+	"github.com/maxzurawski/dispatcher/config"
 
-	"github.com/xdevices/dispatcher/caches/sensortypes"
+	"github.com/maxzurawski/dispatcher/caches/sensortypes"
 
-	"github.com/xdevices/dispatcher/caches/sensors"
+	"github.com/maxzurawski/dispatcher/caches/sensors"
 
 	"github.com/google/uuid"
-	"github.com/xdevices/dispatcher/publishers"
+	"github.com/maxzurawski/dispatcher/publishers"
 
 	"github.com/labstack/echo"
-	"github.com/xdevices/utilities/stringutils"
+	"github.com/maxzurawski/utilities/stringutils"
 )
 
 func TemperatureHandler(c echo.Context) error {
